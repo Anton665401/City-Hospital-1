@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Медицинский центр</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1920x500') no-repeat center center/cover;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero h1 {
+            font-weight: 700;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .hero-text {
+            max-width: 50%;
+        }
+
+        .hero-image {
+            max-width: 45%;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .auth-link {
+            color: #3498db;
+        }
+
+        .auth-link:hover {
+            color: #2980b9;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #ecf0f1;
+            margin-bottom: 30px;
+        }
+
+        .hero .details {
+            font-size: 18px;
+            color: #bdc3c7;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .tips {
+            padding: 60px 0;
+            background-color: #ecf0f1;
+        }
+
+        .tip {
+            background: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .tip h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .tip p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: #2c3e50;
+            padding: 20px 0;
+            text-align: center;
+            color: #fff;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #3498db;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .home-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }	
+    </style>
+</head>
+<body>
+<header class="header">
+    <nav class="nav-container">
+        <div class="logo-container">
+            <!-- Делаем логотип кликабельным -->
+            <a href="index.html" class="logo-link">
+                <div class="logo-circle">
+                    <img src="{{ url_for('static', filename='images/Лого.jpg') }}" alt="Логотип медицинского центра">
+                </div>
+            </a>
+            <div class="organization-name">
+                ОГБУЗ "Черемховская  <br> городская больница №1
+            </div>
+        </div>
+        <div class="nav-menu">
+            {% if username %}
+                <span class="nav-link">Пользователь: {{ username }}</span>
+                <a href="/logout" class="nav-link">Выйти</a>
+            {% else %}
+                <a href="/login" class="auth-link">Вход</a>
+                <a href="/register" class="auth-link">Регистрация</a>
+            {% endif %}
+        </div>
+    </nav>
+</header>
+<section class="hero">
+        <div class="hero-background">
+            <img src="{{ url_for('static', filename='images/Главная картинка.jpg') }}" alt="Медицинский центр">
+        </div>
+        <div class="hero-content" style="top: 15%;">
+            <h1>Здоровый образ жизни</h1>
+            <h2>Откройте для себя ключевые аспекты здорового образа жизни и улучшите свое самочувствие.</h2>
+			<H2>ㅤ</H2>
+			<h2>Профилактика заболеваний — важный аспект поддержания здоровья. Регулярные медицинские осмотры, вакцинация и своевременное обращение к врачу помогают предотвратить развитие многих заболеваний.</h2>
+			<H2>ㅤ</H2>
+			<h2>Следите за своим образом жизни: правильное питание, физическая активность и отказ от вредных привычек — ключевые элементы для поддержания здоровья и долголетия.</h2>
+			<h2>ㅤ</h2>
+        </div>
+    </section>
+
+    <section class="tips">
+        <div class="container">
+            <div class="tip">
+                <img src="https://cdn.culture.ru/images/bd40a5ca-d285-5bfd-8991-a6f8773853fd" alt="Правильное питание">
+                <h2>Правильное питание</h2>
+                <p>Сбалансированное питание — основа здоровья. Включайте в рацион больше овощей и фруктов, избегайте переработанных продуктов и старайтесь питаться регулярно. Пейте достаточное количество воды и ограничьте потребление сахара и соли.</p>
+            </div>
+            <div class="tip">
+                <img src="https://cdn.culture.ru/images/ff383ea9-aa48-5792-9133-5689042403d9" alt="Физическая активность">
+                <h2>Физическая активность</h2>
+                <p>Регулярные физические нагрузки укрепляют тело и дух. Рекомендуется уделять физической активности не менее 150 минут в неделю. Выбирайте виды активности, которые приносят удовольствие, будь то ходьба, плавание, йога или танцы.</p>
+            </div>
+            <div class="tip">
+                <img src="https://cdn.culture.ru/images/c4b5e3b6-7e93-5de3-b405-9d62ef3eb774" alt="Отказ от вредных привычек">
+                <h2>Отказ от вредных привычек</h2>
+                <p>Избавьтесь от вредных привычек, таких как курение и чрезмерное употребление алкоголя. Это поможет снизить риск развития хронических заболеваний и улучшить общее самочувствие.</p>
+            </div>
+            <div class="tip">
+                <img src="https://cdn.culture.ru/images/5438aad2-aecc-5f5c-964f-6ce28d3b317e" alt="Психическое здоровье">
+                <h2>Психическое здоровье</h2>
+                <p>Уделяйте внимание своему психическому здоровью. Практикуйте техники релаксации, такие как медитация и глубокое дыхание, и не стесняйтесь обращаться за помощью к специалистам при необходимости.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 ГБУЗ "Черемховская городская больница №1. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
